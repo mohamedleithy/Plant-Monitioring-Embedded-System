@@ -64,8 +64,20 @@ Designing an embedded system with a negative feedback loop to efficiently monito
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_Diagram.png" alt="Block Diagram" width="700"/>
 
 
-# Dashboard
+
+
+
 # Benefits
+
+## Automation 
+This embedded system would automate the process of watering plants, thus removing the need for human intervention on a daily basis resulting in error-free result in comparison to human labor, increasing consistency and reducing costs. 
+## Real Time Display
+With the use of the dashboard the user would be able to view the the real-time temperature, humidity and moisture directly through his/her phone/Desktop and get notified through telegram mobile application when any of the parameters approaches its threshold. 
+## Set Optimal Conditions 
+Given the monitored parameters, the system is able to water the plant and provide it with its optimal ecosystem that are predefined for a certain plant species to allow maximizing the plants’ growth and yield.
+# Dashboard
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/dashboard.png" alt="Dashboard Image" width="600"/>
 
 # Authors
 
