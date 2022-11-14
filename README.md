@@ -1,16 +1,15 @@
 # Plant-Monitioring-Embedded-System
 
-An automatic clock gating utility. 
 
 
 ## Table of contents
 
-* [Introduction ](https://github.com/kanndil/Lighter#-overview)
-* [Problem Statement](https://github.com/kanndil/Lighter#file-structure)
-* [Architecture and Components ](https://github.com/kanndil/Lighter#-dependencies)
-* [Dashboard ](https://github.com/kanndil/Lighter#-how-to-use)
-* [Benefits ](https://github.com/kanndil/Lighter#-how-it-works)
-* [Authors](https://github.com/kanndil/Lighter#authors)
+* [Introduction ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-introduction)
+* [Problem Statement](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-file-structure)
+* [Architecture and Components ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#--dependencies)
+* [Dashboard ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-how-to-use)
+* [Benefits ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-how-it-works)
+* [Authors](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-authors)
 <!--* [Copyright and Licensing](https://github.com/kanndil/Lighter#%EF%B8%8F-copyright-and-licensing)-->
 
 # 📖 Introduction
