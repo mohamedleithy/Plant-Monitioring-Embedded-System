@@ -20,7 +20,22 @@
 Designing an embedded system with a negative feedback loop to efficiently monitor and control agricultural sites. The system will monitor the environment by deploying sensors that keep track of the temperature, humidity, and soil moisture level, to regulate the soil water level using an electronically controlled water valve. An online dashboard will be integrated into the system to report updates on the agricultural site.
 
 
-# Architecture and Components 
+# Architecture and Components
+
+## Required System Components
+
+ * NUCLEO LC432K 
+ * ESP32 
+ * Water Valve
+ * Humidity Sensor
+ * Temperature Sensor
+ * Mositure Sensor 
+
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/docs/images/NUCLEO_LC432K.PNG" alt="NUCLEO LC432K" width="750"/>
+
+
+
 # Dashboard
 # Benefits
 
