@@ -6,16 +6,26 @@
 
 * [Introduction ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-introduction)
 * [Problem Statement](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-file-structure)
+* [Solution](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-file-structure)
 * [Architecture and Components ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#--dependencies)
-* [Dashboard ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-how-to-use)
 * [Benefits ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-how-it-works)
+* [Dashboard ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-how-to-use)
+
 * [Authors](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-authors)
 <!--* [Copyright and Licensing](https://github.com/kanndil/Lighter#%EF%B8%8F-copyright-and-licensing)-->
 
 # 📖 Introduction
 
+Plant monitoring is a crucial component of agriculture industries since it allows for the controlled climatic growth of plants for the best possible output. Automating a plant's monitoring and management of the environmental factors that either directly or indirectly influence the growth of the plant and, consequently, its output will ease the complexity of the process. In this proposal a plant monitoring system technology system is presented to provide feedback on a web app the proposal includes a detailed description of the problem, architecture of the system and the components used.
 
 # Problem Statement
+
+We are addressing two problems:
+
+* The water waste introduced by the classical agricultural techniques.
+* The high running cost of the agricultural sites workers.
+
+# Solution
 
 Designing an embedded system with a negative feedback loop to efficiently monitor and control agricultural sites. The system will monitor the environment by deploying sensors that keep track of the temperature, humidity, and soil moisture level, to regulate the soil water level using an electronically controlled water valve. An online dashboard will be integrated into the system to report updates on the agricultural site.
 
