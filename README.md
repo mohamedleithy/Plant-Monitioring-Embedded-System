@@ -61,7 +61,7 @@ Designing an embedded system with a negative feedback loop to efficiently monito
 
 #### Block Diagram
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_Diagram.png" alt="Block Diagram" width="300"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_Diagram.png" alt="Block Diagram" width="700"/>
 
 
 # Dashboard
