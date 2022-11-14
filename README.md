@@ -32,7 +32,7 @@ Designing an embedded system with a negative feedback loop to efficiently monito
  * Mositure Sensor 
 
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/docs/images/NUCLEO_LC432K.PNG" alt="NUCLEO LC432K" width="750"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/93f90ed9ca5239e1ea5cceff654c46a319e15414/docs/images/NUCLEO_LC432K.PNG" alt="NUCLEO LC432K" width="750"/>
 
 
 
