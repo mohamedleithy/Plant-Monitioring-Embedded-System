@@ -38,7 +38,7 @@ Designing an embedded system with a negative feedback loop to efficiently monito
  * ESP32 
  * Water Valve
  * Humidity Sensor
- * Temperature Sensor
+ * Temperature Sensor (DS3231 RTC)
  * Mositure Sensor 
 
 
