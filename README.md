@@ -16,7 +16,7 @@
 
 # Introduction
 
-Plant monitoring is a crucial component of agriculture industries since it allows for the controlled climatic growth of plants for the best possible output. Automating a plant's monitoring and management of the environmental factors that either directly or indirectly influence the growth of the plant and, consequently, its output will ease the complexity of the process. In this proposal a plant monitoring system technology system is presented to provide feedback on a web app the proposal includes a detailed description of the problem, architecture of the system and the components used.
+Plant monitoring is a fundamental component of agriculture industries since it allows for controlling the growth of plants for the best possible output. Automating the process of plant monitoring and managing the environmental factors will ease the complexity of such process and will influence the growth of the plant and, consequently, its output. In this proposal a plant monitoring system is presented to provide feedback for the user on a web app. The proposal includes a detailed description of the problem, architecture of the system and the components used.
 
 # Problem Statement
 
