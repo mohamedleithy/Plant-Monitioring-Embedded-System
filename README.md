@@ -20,10 +20,7 @@ Plant monitoring is a fundamental component of agriculture industries since it a
 
 # Problem Statement
 
-We are addressing two problems:
-
-* The water waste introduced by the classical agricultural techniques.
-* The high running cost of the agricultural sites workers.
+Due to climate change and other factors, the amount of water available on Earth is shrinking. In order to ensure plants are able to survive, we need to find ways to reduce our water usage.
 
 # Solution
 
