@@ -5,16 +5,16 @@
 ## Table of contents
 
 * [Introduction ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-introduction)
-* [Problem Statement](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-file-structure)
-* [Solution](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-file-structure)
-* [Architecture and Components ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#--dependencies)
-* [Benefits ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-how-it-works)
-* [Dashboard ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-how-to-use)
-
-* [Authors](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-authors)
+* [Problem Statement](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#problem-statement)
+* [Solution](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#solution)
+* [Architecture and Components](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#architecture-and-components)
+* [Benefits](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#benefits)
+* [Dashboard](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#dashboard)
+* [Authors](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#authors)
+* [Supervisor](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#supervisor)
 <!--* [Copyright and Licensing](https://github.com/kanndil/Lighter#%EF%B8%8F-copyright-and-licensing)-->
 
-# 📖 Introduction
+# Introduction
 
 Plant monitoring is a crucial component of agriculture industries since it allows for the controlled climatic growth of plants for the best possible output. Automating a plant's monitoring and management of the environmental factors that either directly or indirectly influence the growth of the plant and, consequently, its output will ease the complexity of the process. In this proposal a plant monitoring system technology system is presented to provide feedback on a web app the proposal includes a detailed description of the problem, architecture of the system and the components used.
 
