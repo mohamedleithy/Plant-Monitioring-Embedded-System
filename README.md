@@ -41,6 +41,16 @@ Designing an embedded system with a negative feedback loop to efficiently monito
  * Temperature Sensor (DS3231 RTC)
  * Mositure Sensor 
 
+## Architecture
+
+#### Flow Diagram
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/FeedbackLoop.png" alt="Block Diagram" width="700"/>
+
+#### Block Diagram
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_Diagram.png" alt="Block Diagram" width="700"/>
+
 
 #### NUCLEO LC432K
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/93f90ed9ca5239e1ea5cceff654c46a319e15414/docs/images/NUCLEO_LC432K.PNG" alt="NUCLEO LC432K" width="300"/>
@@ -65,13 +75,6 @@ Designing an embedded system with a negative feedback loop to efficiently monito
 #### Mositure Sensor
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/d4f8a01b7df9d3efa0aec967675b00e0a9128026/docs/images/Mositure_Sensor.PNG" alt="Mositure Sensor" width="300"/>
-
-
-## Architecture
-
-#### Block Diagram
-
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_Diagram.png" alt="Block Diagram" width="700"/>
 
 
 
