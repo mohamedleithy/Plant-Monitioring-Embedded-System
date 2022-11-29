@@ -7,36 +7,9 @@
 
 #include "DHT.h"
 
-#include <WiFi.h>
-#include <UniversalTelegramBot.h>
-#include <WiFiClientSecure.h>
-#include <stdio.h>
-#include <string.h>
-#include <string>
-#include <iostream>
 
 
-
-#define BOT_TOKEN "5986548034:AAEGFZwnytznxNJ6SR30ZAvgIcUFHC2Zvw4"
-WiFiClientSecure secured_client;
-UniversalTelegramBot bot(BOT_TOKEN, secured_client);
-
-
-
-void initWiFi() {
-
-  const char* ssid = "Leithy";
-  const char* password = "12345678";
-
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
-  Serial.print("Connecting to WiFi ..");
-  while (WiFi.status() != WL_CONNECTED) {
-    Serial.print('.');
-    delay(1000);
-  }
-  Serial.println(WiFi.localIP());
-}
+// CAYENNE Configuration 
 
 
 
@@ -65,7 +38,47 @@ void initWiFi() {
 // as the current DHT reading algorithm adjusts itself to work on faster procs.
 DHT dht(DHTPIN, DHTTYPE);
 
+void recvWithStartEndMarkers() {
+    static boolean recvInProgress = false;
+    static byte ndx = 0;
+    char startMarker = '<';
+    char endMarker = '>';
+    char rc;
+ 
+    while (Serial2.available() > 0 && newData == false) {
+        rc = Serial2.read();
 
+        if (recvInProgress == true) {
+            if (rc != endMarker) {
+                receivedChars[ndx] = rc;
+                ndx++;
+                if (ndx >= numChars) {
+                    ndx = numChars - 1;
+                }
+            }
+            else {
+                receivedChars[ndx] = '\0'; // terminate the string
+                recvInProgress = false;
+                ndx = 0;
+                newData = true;
+            }
+        }
+
+        else if (rc == startMarker) {
+            recvInProgress = true;
+        }
+    }
+}
+
+
+
+void showNewData() {
+    if (newData == true) {
+        Serial.print("This just in ... ");
+        Serial.println(receivedChars);
+        newData = false;
+    }
+}
 
 
 
@@ -73,10 +86,8 @@ DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
   Serial.begin(9600);
-    
-  initWiFi();  
-  secured_client.setCACert(TELEGRAM_CERTIFICATE_ROOT);
-  bot.sendMessage("-852390733","Sensors are now operating","");
+
+
   dht.begin();
 }
 
@@ -110,13 +121,24 @@ void loop() {
   Serial.print(h);
   Serial.print(F("%  Temperature: "));
   Serial.print(t);
-  Serial.print(F("°C "));
+  Serial.print(F("Â°C "));
   Serial.print(f);
-  Serial.print(F("°F  Heat index: "));
+  Serial.print(F("Â°F  Heat index: "));
   Serial.print(hic);
-  Serial.print(F("°C "));
+  Serial.print(F("Â°C "));
   Serial.print(hif);
-  Serial.println(F("°F"));
+  Serial.println(F("Â°F"));
+
+
+  recvWithStartEndMarkers(); 
+  showNewData(); 
+
+   char buf[100];
+
+   std::string s = receivedChars;
+
+   std::string m = s.substr(0, 4);
+   
 
   
 }
