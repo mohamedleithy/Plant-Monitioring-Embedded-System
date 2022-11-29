@@ -150,18 +150,33 @@ statbuf[1] = 0x88;
 
     /* USER CODE BEGIN 3 */
 
+		//send tempupper byte register address 11h to read from
 HAL_I2C_Master_Transmit(&hi2c3, 0xD0, tempupsend, 1, 10);
+//read data of register 11h to tempUpperByte[1]
 HAL_I2C_Master_Receive(&hi2c3, 0xD1, tempuprec, 1, 10);
 tempvalue = tempuprec[0];
 
+//send tempupper byte register address 11h to read from
 HAL_I2C_Master_Transmit(&hi2c3, 0xD0, tempdownsend, 1, 10);
+//read data of register 11h to tempUpperByte[1]
+/* Shift left by 6 since in the templowerbyte register, we are interested
+* in the least 2 significant bits as the fractional part
+* hence shift right by 6
+*/
 HAL_I2C_Master_Receive(&hi2c3, 0xD1, tempdownrec, 1, 10);
 tempfr = (tempdownrec[0] >> 6)*0.25; // 0.25 resolution
 
 tempfinal = tempvalue + tempfr;
 sprintf((char *)uartBuf, "Temperature: %f \r\n", tempfinal);
-
+//prepare UART output
+//HAL_UART_Transmit(&huart1, uartBuf,sizeof(uartBuf), HAL_MAX_DELAY);
 HAL_Delay(1000);
+  HAL_ADC_Start_IT(&hadc1);
+	HAL_Delay(50);
+	//sprintf(uartBuf2, "%f",moisture_perc);
+	//HAL_UART_Transmit(&huart1,(uint8_t *) uartBuf2,sizeof(uartBuf2), HAL_MAX_DELAY);
+	sprintf(uartBuf3,"<%f %f>",moisture_perc, tempfinal);
+		HAL_UART_Transmit(&huart1,(uint8_t *) uartBuf3,100, HAL_MAX_DELAY);
 
   }
   /* USER CODE END 3 */

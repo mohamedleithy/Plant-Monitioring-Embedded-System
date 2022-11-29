@@ -27,6 +27,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
+#include "stdio.h"
 /* USER CODE END TD */
 
 /* Private define ------------------------------------------------------------*/
@@ -41,6 +42,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
+float  moisture_perc = 0.0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -206,6 +208,24 @@ void SysTick_Handler(void)
 void ADC1_IRQHandler(void)
 {
   /* USER CODE BEGIN ADC1_IRQn 0 */
+
+		// the adc has 12-bit resolution 
+		// the maximum value produced by the sensor represents the dryest state of the soil
+		// then 4096-sensor value represents the amount of water in the soil
+			
+		// the maximum  amount of water value produced by the sensor is 2500
+		// then :
+		// moisture = 4096 - sensor_value
+		// moisture_persentage = (moisture/2500)*100
+		char bufff[100]={0};
+		float sensor_value = HAL_ADC_GetValue(&hadc1);
+		float moisture = 4096.0 - sensor_value;
+		moisture_perc = (moisture/2500)*100;
+
+		
+		sprintf(bufff,"Mositure Precentage: %f\n\r",moisture_perc);
+		//HAL_UART_Transmit(&huart1,(uint8_t *)bufff,sizeof(bufff),100);
+		
 
   /* USER CODE END ADC1_IRQn 0 */
   HAL_ADC_IRQHandler(&hadc1);
