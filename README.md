@@ -20,11 +20,31 @@ Plant monitoring is a fundamental component of agriculture industries since it a
 
 # Problem Statement
 
-Due to climate change and other factors, the amount of water available on Earth is shrinking. In order to ensure plants are able to survive, we need to find ways to reduce our water usage.
+We are addressing two problems:
+
+* The water waste introduced by the classical agricultural techniques.
+* The high running cost of the agricultural sites workers.
 
 # Solution
 
 Designing an embedded system with a negative feedback loop to efficiently monitor and control agricultural sites. The system will monitor the environment by deploying sensors that keep track of the temperature, humidity, and soil moisture level, to regulate the soil water level using an electronically controlled water valve. An online dashboard will be integrated into the system to report updates on the agricultural site.
+
+# Features
+
+* The system will be able to monitor the temperature, humidity, and soil moisture level.
+* The system will be able to control the water level in the soil.
+* The system will be able to report updates on the plants to the user.
+
+# Scale of the project
+
+* The system will be able to monitor indoor plants on a small scale.
+
+
+
+
+
+
+
 
 
 # Architecture and Components
@@ -37,16 +57,6 @@ Designing an embedded system with a negative feedback loop to efficiently monito
  * Humidity Sensor
  * Temperature Sensor (DS3231 RTC)
  * Mositure Sensor 
-
-## Architecture
-
-#### Flow Diagram
-
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/FeedbackLoop.png" alt="Block Diagram" width="700"/>
-
-#### Block Diagram
-
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_Diagram.png" alt="Block Diagram" width="700"/>
 
 
 #### NUCLEO LC432K
@@ -72,6 +82,13 @@ Designing an embedded system with a negative feedback loop to efficiently monito
 #### Mositure Sensor
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/d4f8a01b7df9d3efa0aec967675b00e0a9128026/docs/images/Mositure_Sensor.PNG" alt="Mositure Sensor" width="300"/>
+
+
+## Architecture
+
+#### Block Diagram
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_Diagram.png" alt="Block Diagram" width="700"/>
 
 
 
