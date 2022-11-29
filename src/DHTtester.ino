@@ -7,9 +7,36 @@
 
 #include "DHT.h"
 
+#include <WiFi.h>
+#include <UniversalTelegramBot.h>
+#include <WiFiClientSecure.h>
+#include <stdio.h>
+#include <string.h>
+#include <string>
+#include <iostream>
 
 
-// CAYENNE Configuration 
+
+#define BOT_TOKEN "5986548034:AAEGFZwnytznxNJ6SR30ZAvgIcUFHC2Zvw4"
+WiFiClientSecure secured_client;
+UniversalTelegramBot bot(BOT_TOKEN, secured_client);
+
+
+
+void initWiFi() {
+
+  const char* ssid = "Leithy";
+  const char* password = "12345678";
+
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to WiFi ..");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print('.');
+    delay(1000);
+  }
+  Serial.println(WiFi.localIP());
+}
 
 
 
@@ -46,8 +73,10 @@ DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
   Serial.begin(9600);
-
-
+    
+  initWiFi();  
+  secured_client.setCACert(TELEGRAM_CERTIFICATE_ROOT);
+  bot.sendMessage("-852390733","Sensors are now operating","");
   dht.begin();
 }
 
