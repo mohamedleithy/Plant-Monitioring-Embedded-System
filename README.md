@@ -13,6 +13,7 @@
 * [Benefits](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#benefits)
 * [Dashboard](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#dashboard)
 * [Connections](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#connections)
+* [Demo video](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#Demo-video)
 * [Authors](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#authors)
 * [Supervisor](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#supervisor)
 
@@ -122,6 +123,10 @@ Given the monitored parameters, the system is able to water the plant and provid
 
 
 
+
+# Demo video
+
+[Demo1 video link](https://drive.google.com/file/d/1G4zZnvJq-cPbrkg4IG7pdK0PQtFcPcMl/view)
 
 
 
