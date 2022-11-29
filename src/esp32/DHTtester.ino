@@ -61,13 +61,7 @@ UniversalTelegramBot bot(BOT_TOKEN, secured_client);
 // as the current DHT reading algorithm adjusts itself to work on faster procs.
 DHT dht(DHTPIN, DHTTYPE);
 
-void recvWithStartEndMarkers() {
-    static boolean recvInProgress = false;
-    static byte ndx = 0;
-    char startMarker = '<';
-    char endMarker = '>';
-    char rc;
- void slice(const char *str, char *result, size_t start, size_t end)
+void slice(const char *str, char *result, size_t start, size_t end)
 {
     strncpy(result, str + start, end - start);
 }
@@ -86,40 +80,6 @@ void initWiFi() {
   Serial.println(WiFi.localIP());
 }
 
-    while (Serial2.available() > 0 && newData == false) {
-        rc = Serial2.read();
-
-        if (recvInProgress == true) {
-            if (rc != endMarker) {
-                receivedChars[ndx] = rc;
-                ndx++;
-                if (ndx >= numChars) {
-                    ndx = numChars - 1;
-                }
-            }
-            else {
-                receivedChars[ndx] = '\0'; // terminate the string
-                recvInProgress = false;
-                ndx = 0;
-                newData = true;
-            }
-        }
-
-        else if (rc == startMarker) {
-            recvInProgress = true;
-        }
-    }
-}
-
-
-
-void showNewData() {
-    if (newData == true) {
-        Serial.print("This just in ... ");
-        Serial.println(receivedChars);
-        newData = false;
-    }
-}
 
 void recvWithStartEndMarkers() {
     static boolean recvInProgress = false;
@@ -171,7 +131,8 @@ void setup() {
   Cayenne.begin(username, password, clientID, ssid, wifiPassword);
   secured_client.setCACert(TELEGRAM_CERTIFICATE_ROOT);
 
-  bot.sendMessage("-852390733","Welcome to EzPlant. :) \n Please Choose your plant species: \n 1) Flowers \n 2) Trees \n 3) Fruits \n 4) Shrubs \n","");
+ bot.sendMessage("-852390733","Welcome to EzPlant. :) \n Please Choose your plant species: \n 1) Flowers \n 2) Trees \n 3) Fruits \n 4) Shrubs \n","");
+
 
   dht.begin();
 }
@@ -209,23 +170,13 @@ void loop() {
   Serial.print(h);
   Serial.print(F("%  Temperature: "));
   Serial.print(t);
-  Serial.print(F("Â°C "));
+  Serial.print(F("°C "));
   Serial.print(f);
-  Serial.print(F("Â°F  Heat index: "));
+  Serial.print(F("°F  Heat index: "));
   Serial.print(hic);
-  Serial.print(F("Â°C "));
+  Serial.print(F("°C "));
   Serial.print(hif);
-  Serial.println(F("Â°F"));
-
-   char buf[100];
-
-   std::string s = receivedChars;
-
-   std::string m = s.substr(0, 4);
-   
-
-  recvWithStartEndMarkers(); 
-  showNewData(); 
+  Serial.println(F("°F"));
 
    char buf[100];
 
@@ -235,12 +186,11 @@ void loop() {
    
 
     Serial.println(std::stof(m)); 
-  sprintf(buf, "Temperature: %f", t);
+  sprintf(buf, "Current Temperature: %f", t);
   bot.sendMessage("-852390733",buf ,"");
   Cayenne.celsiusWrite(0, t);
   Cayenne.virtualWrite(1, h);
   Cayenne.virtualWrite(2, std::stof(m));
-
 
   
 }
