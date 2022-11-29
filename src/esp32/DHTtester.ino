@@ -6,12 +6,35 @@
 // - Adafruit Unified Sensor Lib: https://github.com/adafruit/Adafruit_Sensor
 
 #include "DHT.h"
-
+#include <WiFi.h>
+#include <UniversalTelegramBot.h>
+#include <WiFiClientSecure.h>
+#include <stdio.h>
+#include <string.h>
+#include <string>
+#include <iostream>
+boolean newData = false;
 
 
 // CAYENNE Configuration 
 
 
+const byte numChars = 100;
+char receivedChars[numChars];
+
+#define CAYENNE_PRINT Serial
+#include <CayenneMQTTESP32.h>
+
+char username[] = "84aeb200-6ff7-11ed-8d53-d7cd1025126a";
+char password[] = "c36766267423ba1108941490b0428b58c97fd511";
+char clientID[] = "316e05e0-6ff8-11ed-8d53-d7cd1025126a";
+
+char ssid[ ] = "Leithy";
+char wifiPassword[ ] = "12345678";
+
+#define BOT_TOKEN "5986548034:AAEGFZwnytznxNJ6SR30ZAvgIcUFHC2Zvw4"
+WiFiClientSecure secured_client;
+UniversalTelegramBot bot(BOT_TOKEN, secured_client);
 
 
 
@@ -37,6 +60,66 @@
 // tweak the timings for faster processors.  This parameter is no longer needed
 // as the current DHT reading algorithm adjusts itself to work on faster procs.
 DHT dht(DHTPIN, DHTTYPE);
+
+void recvWithStartEndMarkers() {
+    static boolean recvInProgress = false;
+    static byte ndx = 0;
+    char startMarker = '<';
+    char endMarker = '>';
+    char rc;
+ void slice(const char *str, char *result, size_t start, size_t end)
+{
+    strncpy(result, str + start, end - start);
+}
+void initWiFi() {
+
+  const char* ssid = "Leithy";
+  const char* password = "12345678";
+
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to WiFi ..");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print('.');
+    delay(1000);
+  }
+  Serial.println(WiFi.localIP());
+}
+
+    while (Serial2.available() > 0 && newData == false) {
+        rc = Serial2.read();
+
+        if (recvInProgress == true) {
+            if (rc != endMarker) {
+                receivedChars[ndx] = rc;
+                ndx++;
+                if (ndx >= numChars) {
+                    ndx = numChars - 1;
+                }
+            }
+            else {
+                receivedChars[ndx] = '\0'; // terminate the string
+                recvInProgress = false;
+                ndx = 0;
+                newData = true;
+            }
+        }
+
+        else if (rc == startMarker) {
+            recvInProgress = true;
+        }
+    }
+}
+
+
+
+void showNewData() {
+    if (newData == true) {
+        Serial.print("This just in ... ");
+        Serial.println(receivedChars);
+        newData = false;
+    }
+}
 
 void recvWithStartEndMarkers() {
     static boolean recvInProgress = false;
@@ -80,13 +163,15 @@ void showNewData() {
     }
 }
 
-
-
-
-
 void setup() {
   Serial.begin(9600);
+  Serial2.begin(115200);
+  Serial.println(F("DHTxx test!"));
+  //initWiFi();
+  Cayenne.begin(username, password, clientID, ssid, wifiPassword);
+  secured_client.setCACert(TELEGRAM_CERTIFICATE_ROOT);
 
+  bot.sendMessage("-852390733","Welcome to EzPlant. :) \n Please Choose your plant species: \n 1) Flowers \n 2) Trees \n 3) Fruits \n 4) Shrubs \n","");
 
   dht.begin();
 }
@@ -95,7 +180,7 @@ void loop() {
   // Wait a few seconds between measurements.
   delay(500);
 
- 
+  Cayenne.loop();
 
   // Reading temperature or humidity takes about 250 milliseconds!
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
@@ -105,6 +190,9 @@ void loop() {
   // Read temperature as Fahrenheit (isFahrenheit = true)
   float f = dht.readTemperature(true);
 
+
+  recvWithStartEndMarkers(); 
+  showNewData(); 
 
   // Check if any reads failed and exit early (to try again).
   if (isnan(h) || isnan(t) || isnan(f)) {
@@ -129,6 +217,12 @@ void loop() {
   Serial.print(hif);
   Serial.println(F("Â°F"));
 
+   char buf[100];
+
+   std::string s = receivedChars;
+
+   std::string m = s.substr(0, 4);
+   
 
   recvWithStartEndMarkers(); 
   showNewData(); 
@@ -139,6 +233,14 @@ void loop() {
 
    std::string m = s.substr(0, 4);
    
+
+    Serial.println(std::stof(m)); 
+  sprintf(buf, "Temperature: %f", t);
+  bot.sendMessage("-852390733",buf ,"");
+  Cayenne.celsiusWrite(0, t);
+  Cayenne.virtualWrite(1, h);
+  Cayenne.virtualWrite(2, std::stof(m));
+
 
   
 }
