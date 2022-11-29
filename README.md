@@ -8,7 +8,7 @@
 * [Problem Statement](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#problem-statement)
 * [Solution](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#solution)
 * [Features](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#features)
-* [Scale of the project](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#features)
+* [Scale of the project](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#scale-of-the-project)
 * [Architecture and Components](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#architecture-and-components)
 * [Benefits](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#benefits)
 * [Dashboard](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#dashboard)
@@ -35,7 +35,7 @@ Designing an embedded system with a negative feedback loop to efficiently monito
 
 * The system will be able to monitor the temperature, humidity, and soil moisture level.
 * The system will be able to control the water level in the soil.
-* The system will be able to report updates on the plants to the user.
+* The system will be able to report updates on the environment to the user.
 
 # Scale of the project
 
