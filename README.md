@@ -7,12 +7,14 @@
 * [Introduction ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-introduction)
 * [Problem Statement](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#problem-statement)
 * [Solution](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#solution)
+* [Features](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#features)
+* [Scale of the project](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#features)
 * [Architecture and Components](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#architecture-and-components)
 * [Benefits](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#benefits)
 * [Dashboard](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#dashboard)
+* [Connections](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#connections)
 * [Authors](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#authors)
 * [Supervisor](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#supervisor)
-<!--* [Copyright and Licensing](https://github.com/kanndil/Lighter#%EF%B8%8F-copyright-and-licensing)-->
 
 # Introduction
 
@@ -105,6 +107,23 @@ Given the monitored parameters, the system is able to water the plant and provid
 # Dashboard
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/dashboard.png" alt="Dashboard Image" width="600"/>
+
+
+# Connections:
+
+* Deploy the STM board on the breadboard
+* Deploy the ESP32 board on the breadboard
+* Connect the two microcontrollers together via UART serial connection
+* Connect the humidity sensor to the ESP32 board using any GPIO pin
+* Connect the temprature sensor to the STM board using i2c synchronous connection
+* Connect the moisture sensor to the STM board using built in ADC
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/connection.png" alt="Dashboard Image" width="600"/>
+
+
+
+
+
 
 # Authors
 
