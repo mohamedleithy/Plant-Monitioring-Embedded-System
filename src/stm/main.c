@@ -549,12 +549,13 @@ void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
-  		moistureLimit =60.0;
+		moistureLimit =60.0;
 		moistureLimit2 =60.0;
   for(;;)
   { 			
-			int moistureLimitSeason =moistureLimit;
-		    int	moistureLimitSeason2 = moistureLimit2;
+		
+		int moistureLimitSeason =moistureLimit;
+		int	moistureLimitSeason2 = moistureLimit2;
 			if (tempfinal>23){
 				moistureLimitSeason  +=10;
 				moistureLimitSeason2 +=10;
@@ -667,7 +668,21 @@ void StartTask04(void *argument)
   {
 	
 		
-		
+		if(xSemaphoreTake(myBinarySem01Handle,  999999)) {
+
+				//recieve
+				HAL_UART_Receive(&huart1, data, sizeof(data), HAL_MAX_DELAY);
+				//enable UART recieve
+				__HAL_UART_ENABLE_IT(&huart1, UART_IT_RXNE);
+ 
+				if (data[0]=='1'){
+					moistureLimit= (data[1]-48)*10;
+					
+				}else{
+					moistureLimit2= (data[1]-48)*10;
+				}
+
+		}
   }
   /* USER CODE END StartTask04 */
 }
