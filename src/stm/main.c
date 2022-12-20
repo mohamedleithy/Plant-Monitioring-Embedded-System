@@ -549,9 +549,28 @@ void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
+  		moistureLimit =60.0;
+		moistureLimit2 =60.0;
   for(;;)
   { 			
-		
+			int moistureLimitSeason =moistureLimit;
+		    int	moistureLimitSeason2 = moistureLimit2;
+			if (tempfinal>23){
+				moistureLimitSeason  +=10;
+				moistureLimitSeason2 +=10;
+			}
+			
+			
+			if(moisture_perc<= moistureLimitSeason){
+				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 1);
+			}else{
+				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
+			}
+			if(moisture_perc2<= moistureLimitSeason2){
+				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1);
+			}else{
+				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 0);
+			}		
 			
     osDelay(1);
  
@@ -620,7 +639,11 @@ void StartTask03(void *argument)
   for(;;)
   {
 		
-			
+			HAL_UART_Transmit(&huart1,(uint8_t *) uartBuf3,10, HAL_MAX_DELAY);
+			// HAL_UART_Transmit(&huart1,(uint8_t *) uartBuf4,40, HAL_MAX_DELAY);
+			for (int i = 0 ; i<10 ; i++){
+				HAL_Delay(5);
+			}
 
   
 }
