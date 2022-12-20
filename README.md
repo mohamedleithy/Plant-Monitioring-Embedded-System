@@ -5,7 +5,7 @@
 ## Table of contents
 
 * [Introduction ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-introduction)
-* [Background-and-Motivation](https://github.com/mohamedleithy/  Plant-Monitioring-Embedded-System#Background-and-Motivation)
+* [Background and Motivation](https://github.com/mohamedleithy/  Plant-Monitioring-Embedded-System#Background-and-Motivation)
 * [Problem Statement](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#problem-statement)
 * [Solution](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#solution)
 * [Features](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#features)
@@ -83,7 +83,7 @@ Designing an embedded system with a negative feedback loop to efficiently monito
 
 #### Relay
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/afb314276207133cf847639b5021b7976e6eaa1d/docs/images/relay.jpg" alt="Water Valve" width="300"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/afb314276207133cf847639b5021b7976e6eaa1d/docs/images/relay.jpg" alt="Relay" width="300"/>
 
 #### Temperature Sensor
 
@@ -99,7 +99,7 @@ Designing an embedded system with a negative feedback loop to efficiently monito
 
 #### Block Diagram
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_diagram_updated.png" alt="Block Diagram" width="700"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_diagram_updated.jpeg" alt="Block Diagram" width="700"/>
 
 
 # Iterations
@@ -140,10 +140,10 @@ Given the monitored parameters, the system is able to water the plant and provid
 * Connect GPIO Pins to designated relay.
 
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Breadboard.png" alt="Breadboard Image" width="600"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Breadboard.jpg" alt="Breadboard Image" width="600"/>
 
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Connections.png" alt="Connection Image" width="600"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Connections.jpg" alt="Connection Image" width="600"/>
 
 
 
