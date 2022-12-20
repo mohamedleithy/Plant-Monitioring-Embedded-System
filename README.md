@@ -39,15 +39,17 @@ We are addressing two problems:
 
 Designing an embedded system with a negative feedback loop to efficiently monitor and control agricultural sites. The system will monitor the environment by deploying sensors that keep track of the temperature, humidity, and soil moisture level, to regulate the soil water level using an electronically controlled water valve. An online dashboard will be integrated into the system to report updates on the agricultural site.
 
-# Features
+# Requirmenets and Features
 
-* The system will be able to monitor the temperature, humidity, and soil moisture level.
+* The user will be able to select his/her plant type through the web interface, and the soil moisture level is specified accordingly
+* The system will be able to monitor the temperature and soil moisture level.
 * The system will be able to control the water level in the soil.
-* The system will be able to report updates on the environment to the user.
+* The system will be able to modify the soil moisture level, based on the temprature. 
+* The system will be able to report updates on the environment to the user through the web interface.
 
 # Scale of the project
 
-* The system will be able to monitor indoor plants on a small scale.
+* The system will be able to monitor indoor plants on a small scale, prototype is done on two overage sized plant pots.
 
 
 
