@@ -36,7 +36,7 @@ def open_socket(ip, soc):
     print(connection)
     return connection
 
-def webpage(temperature, state):
+def webpage(temperature, state, selected11,selected12,selected13,selected14,selected21,selected22,selected23,selected24):
     #Template HTML
     html = f"""
  <!DOCTYPE html>
@@ -92,34 +92,20 @@ def webpage(temperature, state):
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Data Section</h3>
     <h1>Plants data</h1>
 
-        <!-- <form action="./lighton">
-        <input type="submit" value="Light on" />
-        </form>
-        <form action="./lightoff">
-        <input type="submit" value="Light off" />
-        </form> -->
-        <!-- <p>LED is {state}</p> -->
+    
         <p class="Temp">Temperature is {temperature}</p>
 
         <p class = "Moisture">Moisture for the first plant is {moisture}%</p>
         <p> choose the type of your first plant: </p>
         <div>
-          <!-- <label for="plants">Select the type of the plant:</label>
-          <div class = "dropdownClass"> 
-           <form method="POST" action = "./plants_id=" >
-          <select name="plants_id=" id="plants_id">
-            <option value="11">Wildflowers</option>
-            <option value="12">Thistle</option>
-            <option value="13" >Flowers</option>
-            <option value="14" selected>Herbs</option>
-          </select> -->
+
 
           <form class = "plants_id" name="plants_id" action="./plants_id" method="GET">
             <select name="plants_id">
-              <option value="11">Wildflowers</option>
-              <option value="12">Thistle</option>
-              <option value="13" >Flowers</option>
-              <option value="14" selected>Herbs</option>
+              <option value="11" {selected11}>Wildflowers</option>
+              <option value="12" {selected12}>Thistle</option>
+              <option value="13" {selected13} >Flowers</option>
+              <option value="14" {selected14}>Herbs</option>
             </select>
             <input class="w3-button w3-black w3-section" type="submit" id="submit" value="Send">
            </form>
@@ -127,22 +113,14 @@ def webpage(temperature, state):
         <p class = "Moisture">Moisture for the second plant is {mois}%</p>
         <p> choose the type of your second plant: </p>
         <div>
-          <!-- <label for="plants">Select the type of the plant:</label>
-          <div class = "dropdownClass"> 
-           <form method="POST" action = "./plants_id=" >
-          <select name="plants_id=" id="plants_id">
-            <option value="21">Wildflowers</option>
-            <option value="22">Thistle</option>
-            <option value="23" >Flowers</option>
-            <option value="24" selected>Herbs</option>
-          </select> -->
+    
 
           <form class = "plants_id" name="plants_id" action="./plants_id" method="GET">
             <select name="plants_id">
-              <option value="21">Wildflowers</option>
-              <option value="22">Thistle</option>
-              <option value="23" >Flowers</option>
-              <option value="24" selected>Herbs</option>
+              <option value="21" {selected21}>Wildflowers</option>
+              <option value="22" {selected22}>Thistle</option>
+              <option value="23" {selected23}>Flowers</option>
+              <option value="24" {selected24}>Herbs</option>
             </select>
             <input class="w3-button w3-black w3-section" type="submit" id="submit" value="Send">
            </form>
@@ -299,6 +277,14 @@ def serve(connection):
     state = 'OFF'
     pico_led.off()
     temperature = 0
+    selected11 = ''
+    selected12 = ''
+    selected13 = ''
+    selected14 = ''
+    selected21 = ''
+    selected22 = ''
+    selected23 = ''
+    selected24 = ''
     while True:
         
         try:
@@ -311,32 +297,64 @@ def serve(connection):
        
         if request =='/plants_id?plants_id=11':
             uart0 = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1))
+            selected11 = 'selected'
+            selected12 = ''
+            selected13 = ''
+            selected14 = ''
             uart0.write('11')
         elif request =='/plants_id?plants_id=12':
             uart0 = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1))
+            selected11 = ''
+            selected12 = 'selected'
+            selected13 = ''
+            selected14 = ''
             uart0.write('12')
         elif request =='/plants_id?plants_id=13':
             uart0 = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1))
+            selected11 = ''
+            selected12 = ''
+            selected13 = 'selected'
+            selected14 = ''
             uart0.write('13')
         elif request =='/plants_id?plants_id=14':
             uart0 = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1))
+            selected11 = ''
+            selected12 = ''
+            selected13 = ''
+            selected14 = 'selected'
             uart0.write('14')
         elif request =='/plants_id?plants_id=21':
             uart0 = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1))
+            selected21 = 'selected'
+            selected22 = ''
+            selected23 = ''
+            selected24 = ''
             uart0.write('21')
         elif request =='/plants_id?plants_id=22':
             uart0 = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1))
+            selected21 = ''
+            selected22 = 'selected'
+            selected23 = ''
+            selected24 = ''
             uart0.write('22')
         elif request =='/plants_id?plants_id=23':
             uart0 = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1))
+            selected21 = ''
+            selected22 = ''
+            selected23 = 'selected'
+            selected24 = ''
             uart0.write('23')
         elif request =='/plants_id?plants_id=24':
             uart0 = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1))
+            selected21 = ''
+            selected22 = ''
+            selected23 = ''
+            selected24 = 'selected'
             uart0.write('24')
             
         print(request)  
         temperature = pico_temp_sensor.temp   
-        html = webpage(temperature, state)
+        html = webpage(temperature, state, selected11, selected12, selected13, selected14, selected21, selected22, selected23, selected24)
         client.send(html)
         client.close()
 
