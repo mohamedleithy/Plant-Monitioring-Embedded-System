@@ -156,7 +156,7 @@ it can be concluded that the system implemented successfully reads the soil mois
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/dashboard.png" alt="Dashboard Image" width="600"/>
 
-
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/dashboar2.png" alt="Dashboard Image 2" width="600"/>
 
 # Project Progress and Demo video
 
