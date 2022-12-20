@@ -163,7 +163,7 @@ it can be concluded that the system implemented successfully reads the soil mois
 
 The system is now able to monitor the soil moisture level in two average sized plant pots, along with the temperature, and accordingly switch on/off the relay that controls the water solenoids attached to the water source. 
 
-[Demo1 video link](https://drive.google.com/file/d/1defMuau6kGnW1_lsAHdz8Dkl8jO6r3im/view?usp=sharing)
+[Demo video link](https://drive.google.com/file/d/1defMuau6kGnW1_lsAHdz8Dkl8jO6r3im/view?usp=sharing)
 
 
 
@@ -181,17 +181,17 @@ The system is now able to monitor the soil moisture level in two average sized p
 
 # 3D Model of the system
 
-* Base of the model:
+* Base of the model
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Base.JPG" alt="Base of the model" width="400"/>
 
-* Cap of the model:
+* Cap of the model
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Cap.JPG" alt="Cap of the model" width="400"/>
 
-* rod:
+* rod
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/rod.JPG" alt="rod" width="400"/>
 
-* Bottle:
+* Bottle
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Bottle.JPG" alt="Bottle" width="400"/>
 
@@ -200,7 +200,7 @@ The system is now able to monitor the soil moisture level in two average sized p
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/WholeModel.JPG" alt="whole model" width="400"/>
 
 
-* the model is basically consists of 4 parts:
+* The model is basically consists of 4 parts:
     * The base
     * The cap
     * The rod
