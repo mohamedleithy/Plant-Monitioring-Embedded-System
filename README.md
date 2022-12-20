@@ -51,15 +51,23 @@ Designing an embedded system with a negative feedback loop to efficiently monito
 
 
 
+# Architecture
 
+## Software architecture design
 
+For the STM board:
+We designed our embedded system to used FreeRTOS to coordinate its different tasks. The use of FreeRTOS was essential to allow parallel execution of the tasks in a real-time fashion. Moreover, the use of interrupts opened the door for handling aperiodic tasks in the system, and data racing conditions were handled using semaphores. 
 
+For the raspberry pi pico:
+Here we used a multithreaded architecture to allow the blocking of synchronous receiving and sending of the server. The python _thread library was used to generate a couple of threads that separately handle the sockets operations and the UART communication with the STM board.
 
+## Hardware architecture design
 
+### Block Diagram
 
-# Architecture and Components
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_diagram_updated.jpeg" alt="Block Diagram" width="700"/>
 
-## Required System Components
+### System Components
 
  * NUCLEO LC432K 
  * ESP32 
@@ -94,16 +102,25 @@ Designing an embedded system with a negative feedback loop to efficiently monito
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/d4f8a01b7df9d3efa0aec967675b00e0a9128026/docs/images/Mositure_Sensor.PNG" alt="Mositure Sensor" width="300"/>
 
+### Connections:
 
-## Architecture
+* Deploy the STM board on the breadboard
+* Deploy the Raspberry Pi Pico board on the breadboard
+* Connect the two microcontrollers together via UART serial connection
+* Connect the temprature sensor to the STM board using i2c synchronous connection
+* Connect the 2 moisture sensor to the STM board using built in ADC on two seperate channels
+* Connect each 12V supply to relay, connect relay output to the water valves
+* Connect GPIO Pins to designated relay.
 
-#### Block Diagram
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_diagram_updated.jpeg" alt="Block Diagram" width="700"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Breadboard.jpg" alt="Breadboard Image" width="600"/>
+
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Connections.jpg" alt="Connection Image" width="600"/>
+
 
 
 # Iterations
-
 
 ## First phase
 
@@ -127,24 +144,6 @@ Given the monitored parameters, the system is able to water the plant and provid
 # Dashboard
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/dashboard.png" alt="Dashboard Image" width="600"/>
-
-
-# Connections:
-
-* Deploy the STM board on the breadboard
-* Deploy the Raspberry Pi Pico board on the breadboard
-* Connect the two microcontrollers together via UART serial connection
-* Connect the temprature sensor to the STM board using i2c synchronous connection
-* Connect the 2 moisture sensor to the STM board using built in ADC on two seperate channels
-* Connect each 12V supply to relay, connect relay output to the water valves
-* Connect GPIO Pins to designated relay.
-
-
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Breadboard.jpg" alt="Breadboard Image" width="600"/>
-
-
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Connections.jpg" alt="Connection Image" width="600"/>
-
 
 
 
