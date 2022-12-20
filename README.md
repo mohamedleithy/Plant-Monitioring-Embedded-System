@@ -199,6 +199,9 @@ The system is now able to monitor the soil moisture level in two average sized p
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/WholeModel.JPG" alt="whole model" width="400"/>
 
+* Real image of the model (not printed properly)
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Real_Model.jpeg" alt="Real model" width="400"/>
 
 * The model is basically consists of 4 parts:
     * The base
