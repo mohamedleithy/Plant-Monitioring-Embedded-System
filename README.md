@@ -178,6 +178,19 @@ The system is now able to monitor the soil moisture level in two average sized p
     * Does not troubleshoot technical issues in sensors
     * Force quit the system when a technical issue happens
 
+
+# Model of the system
+
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Base.JPG" alt="Dashboard Image" width="600"/>
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Cap.JPG" alt="Dashboard Image" width="600"/>
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/rod.JPG" alt="Dashboard Image" width="600"/>
+
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Bottle.JPG" alt="Dashboard Image" width="600"/>
+
+
 # Authors
 
 * [Mohamed Nasr](https://github.com/mnassr1658)
