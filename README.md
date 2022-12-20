@@ -182,22 +182,22 @@ The system is now able to monitor the soil moisture level in two average sized p
 # 3D Model of the system
 
 * Base of the model:
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Base.JPG" alt="Base of the model" width="600"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Base.JPG" alt="Base of the model" width="400"/>
 
 * Cap of the model:
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Cap.JPG" alt="Cap of the model" width="600"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Cap.JPG" alt="Cap of the model" width="400"/>
 
 * rod:
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/rod.JPG" alt="rod" width="600"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/rod.JPG" alt="rod" width="400"/>
 
 * Bottle:
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Bottle.JPG" alt="Bottle" width="600"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Bottle.JPG" alt="Bottle" width="400"/>
 
 * Whole Model
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/WholeModel.JPG" alt="whole model" width="600"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/WholeModel.JPG" alt="whole model" width="400"/>
 
 
 * the model is basically consists of 4 parts:
@@ -206,6 +206,7 @@ The system is now able to monitor the soil moisture level in two average sized p
     * The rod
     * The bottle
 * Each one of them is 3D printed and assembled together to form the final model. The base is assembled with the rods and the bottle is assembled with the cap and the rod. The bottle is then inserted into the base and the cap is inserted into the bottle.
+The two opeenings in the bottom is responsible for the water to flow out of the bottle and the one opening in the top is responsible for the water to flow into the bottle for filling the bottle up.
 
 # Authors
 
