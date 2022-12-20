@@ -19,10 +19,15 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include "FreeRTOS.h"
+#include "queue.h"
+#include "task.h"
+#include "semphr.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -38,7 +43,8 @@
 /* USER CODE BEGIN PM */
 
 extern float moisture_perc;
-
+extern float moisture_perc2;
+extern int adcflag;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -49,7 +55,65 @@ I2C_HandleTypeDef hi2c3;
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
+/* Definitions for defaultTask */
+osThreadId_t defaultTaskHandle;
+const osThreadAttr_t defaultTask_attributes = {
+  .name = "defaultTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for SensorsTask */
+osThreadId_t SensorsTaskHandle;
+const osThreadAttr_t SensorsTask_attributes = {
+  .name = "SensorsTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
+/* Definitions for UartCommunicati */
+osThreadId_t UartCommunicatiHandle;
+const osThreadAttr_t UartCommunicati_attributes = {
+  .name = "UartCommunicati",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
+/* Definitions for Calculate */
+osThreadId_t CalculateHandle;
+const osThreadAttr_t Calculate_attributes = {
+  .name = "Calculate",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
+/* Definitions for Calculate2 */
+osThreadId_t Calculate2Handle;
+const osThreadAttr_t Calculate2_attributes = {
+  .name = "Calculate2",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
+/* Definitions for UartCom2 */
+osThreadId_t UartCom2Handle;
+const osThreadAttr_t UartCom2_attributes = {
+  .name = "UartCom2",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
+/* Definitions for myBinarySem01 */
+osSemaphoreId_t myBinarySem01Handle;
+const osSemaphoreAttr_t myBinarySem01_attributes = {
+  .name = "myBinarySem01"
+};
 /* USER CODE BEGIN PV */
+
+
+uint8_t ctlbuf[2],statbuf[2], tempupsend[1],tempdownsend[1], tempuprec[1],tempdownrec[1];
+uint8_t tempvalue;
+float tempfr, tempfinal;
+uint8_t humidity,temp1; 
+uint8_t uartBuf [100], uartBuf1 [100] = {0};
+char uartBuf2[100] = {0}, uartBuf3[100] = {0}, uartBuf4[100] = {0};
+float moistureLimit =60.0;
+float moistureLimit2 =60.0;
+uint8_t data[2] = {0};
 
 /* USER CODE END PV */
 
@@ -60,10 +124,14 @@ static void MX_USART2_UART_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_I2C3_Init(void);
 static void MX_USART1_UART_Init(void);
+void StartDefaultTask(void *argument);
+void StartTask02(void *argument);
+void StartTask03(void *argument);
+void StartTask04(void *argument);
+void StartTask05(void *argument);
+void StartTask06(void *argument);
+
 /* USER CODE BEGIN PFP */
-
-
-
 
 
 /* USER CODE END PFP */
@@ -108,75 +176,87 @@ int main(void)
   MX_I2C3_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-//HAL_TIM_Base_Start(&htim1);
-//	HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_1);
-//	__HAL_UART_ENABLE_IT(&huart2,UART_IT_RXNE);
-	uint8_t secbuffer[2], minbuffer[2], hourbuffer[2],ctlbuf[2],statbuf[2], tempupsend[1],tempdownsend[1], tempuprec[1],tempdownrec[1];
-uint8_t h1,h2,m1,m2,s1,s2,tempvalue;
-float tempfr, tempfinal;
-//	TIM1->CNT = 0;
-	//HAL_Delay(100);
-uint8_t humidity,temp1;
- HAL_I2C_Master_Transmit(&hi2c3, 0xD0, hourbuffer, 2, 10);
- 
- 
+  __HAL_UART_ENABLE_IT(&huart1,UART_IT_RXNE);
   ctlbuf[0] = 0x0E;
- ctlbuf[1] = 0x3C;
+	ctlbuf[1] = 0x3C;
  
   HAL_I2C_Master_Transmit(&hi2c3, 0xD0, ctlbuf, 2, 10);
 
-
-statbuf[0] = 0x0F;
-statbuf[1] = 0x88;
+	statbuf[0] = 0x0F;
+	statbuf[1] = 0x88;
  
-  HAL_I2C_Master_Transmit(&hi2c3, 0xD0, statbuf, 2, 10);
-// send to tempupper upperbyte register /*Integer Part*/
- tempupsend[0] = 0x11; // address of the register // reference page: DS page 15
- HAL_I2C_Master_Transmit(&hi2c3, 0xD0, tempupsend, 2, 10);
- 
- // send to tempupper lowerbyte register /*Fractional Part*/
- tempdownsend[0] = 0x12; // address of the register // reference page: DS page 15
- HAL_I2C_Master_Transmit(&hi2c3, 0xD0, tempdownsend, 2, 10);
-  uint8_t uartBuf [100], uartBuf1 [100] = {0};
-	char uartBuf2[100] = {0}, uartBuf3[100] = {0};
-
+	HAL_I2C_Master_Transmit(&hi2c3, 0xD0, statbuf, 2, 10);
+	// send to tempupper upperbyte register /*Integer Part*/
+  tempupsend[0] = 0x11; // address of the register // reference page: DS page 15
+  HAL_I2C_Master_Transmit(&hi2c3, 0xD0, tempupsend, 2, 10);
+  // send to tempupper lowerbyte register /*Fractional Part*/
+  tempdownsend[0] = 0x12; // address of the register // reference page: DS page 15
+  HAL_I2C_Master_Transmit(&hi2c3, 0xD0, tempdownsend, 2, 10);
   /* USER CODE END 2 */
 
+  /* Init scheduler */
+  osKernelInitialize();
+
+  /* USER CODE BEGIN RTOS_MUTEX */
+  /* add mutexes, ... */
+  /* USER CODE END RTOS_MUTEX */
+
+  /* Create the semaphores(s) */
+  /* creation of myBinarySem01 */
+  myBinarySem01Handle = osSemaphoreNew(1, 1, &myBinarySem01_attributes);
+
+  /* USER CODE BEGIN RTOS_SEMAPHORES */
+  /* add semaphores, ... */
+  /* USER CODE END RTOS_SEMAPHORES */
+
+  /* USER CODE BEGIN RTOS_TIMERS */
+  /* start timers, add new ones, ... */
+  /* USER CODE END RTOS_TIMERS */
+
+  /* USER CODE BEGIN RTOS_QUEUES */
+  /* add queues, ... */
+  /* USER CODE END RTOS_QUEUES */
+
+  /* Create the thread(s) */
+  /* creation of defaultTask */
+  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+
+  /* creation of SensorsTask */
+  SensorsTaskHandle = osThreadNew(StartTask02, NULL, &SensorsTask_attributes);
+
+  /* creation of UartCommunicati */
+  UartCommunicatiHandle = osThreadNew(StartTask03, NULL, &UartCommunicati_attributes);
+
+  /* creation of Calculate */
+  CalculateHandle = osThreadNew(StartTask04, NULL, &Calculate_attributes);
+
+  /* creation of Calculate2 */
+  Calculate2Handle = osThreadNew(StartTask05, NULL, &Calculate2_attributes);
+
+  /* creation of UartCom2 */
+  UartCom2Handle = osThreadNew(StartTask06, NULL, &UartCom2_attributes);
+
+  /* USER CODE BEGIN RTOS_THREADS */
+  /* add threads, ... */
+  /* USER CODE END RTOS_THREADS */
+
+  /* USER CODE BEGIN RTOS_EVENTS */
+  /* add events, ... */
+  /* USER CODE END RTOS_EVENTS */
+
+  /* Start scheduler */
+  osKernelStart();
+
+  /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
-		//send tempupper byte register address 11h to read from
-HAL_I2C_Master_Transmit(&hi2c3, 0xD0, tempupsend, 1, 10);
-//read data of register 11h to tempUpperByte[1]
-HAL_I2C_Master_Receive(&hi2c3, 0xD1, tempuprec, 1, 10);
-tempvalue = tempuprec[0];
-
-//send tempupper byte register address 11h to read from
-HAL_I2C_Master_Transmit(&hi2c3, 0xD0, tempdownsend, 1, 10);
-//read data of register 11h to tempUpperByte[1]
-/* Shift left by 6 since in the templowerbyte register, we are interested
-* in the least 2 significant bits as the fractional part
-* hence shift right by 6
-*/
-HAL_I2C_Master_Receive(&hi2c3, 0xD1, tempdownrec, 1, 10);
-tempfr = (tempdownrec[0] >> 6)*0.25; // 0.25 resolution
-
-tempfinal = tempvalue + tempfr;
-sprintf((char *)uartBuf, "Temperature: %f \r\n", tempfinal);
-//prepare UART output
-//HAL_UART_Transmit(&huart1, uartBuf,sizeof(uartBuf), HAL_MAX_DELAY);
-HAL_Delay(1000);
-  HAL_ADC_Start_IT(&hadc1);
-	HAL_Delay(50);
-	//sprintf(uartBuf2, "%f",moisture_perc);
-	//HAL_UART_Transmit(&huart1,(uint8_t *) uartBuf2,sizeof(uartBuf2), HAL_MAX_DELAY);
-	sprintf(uartBuf3,"<%f %f>",moisture_perc, tempfinal);
-		HAL_UART_Transmit(&huart1,(uint8_t *) uartBuf3,100, HAL_MAX_DELAY);
 
   }
   /* USER CODE END 3 */
@@ -356,7 +436,7 @@ static void MX_USART1_UART_Init(void)
 
   /* USER CODE END USART1_Init 1 */
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
+  huart1.Init.BaudRate = 9600;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;
@@ -391,7 +471,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
+  huart2.Init.BaudRate = 9600;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
@@ -425,7 +505,17 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8|GPIO_PIN_11, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, LD3_Pin|GPIO_PIN_5, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : PA8 PA11 */
+  GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_11;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PA10 */
   GPIO_InitStruct.Pin = GPIO_PIN_10;
@@ -433,12 +523,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : LD3_Pin */
-  GPIO_InitStruct.Pin = LD3_Pin;
+  /*Configure GPIO pins : LD3_Pin PB5 */
+  GPIO_InitStruct.Pin = LD3_Pin|GPIO_PIN_5;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LD3_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 
@@ -447,6 +537,154 @@ static void MX_GPIO_Init(void)
 
 
 /* USER CODE END 4 */
+
+/* USER CODE BEGIN Header_StartDefaultTask */
+/**
+  * @brief  Function implementing the defaultTask thread.
+  * @param  argument: Not used
+  * @retval None
+  */
+/* USER CODE END Header_StartDefaultTask */
+void StartDefaultTask(void *argument)
+{
+  /* USER CODE BEGIN 5 */
+  /* Infinite loop */
+  for(;;)
+  { 			
+		
+			
+    osDelay(1);
+ 
+  }
+  /* USER CODE END 5 */
+}
+
+/* USER CODE BEGIN Header_StartTask02 */
+/**
+* @brief Function implementing the SensorsTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask02 */
+void StartTask02(void *argument)
+{
+  /* USER CODE BEGIN StartTask02 */
+  /* Infinite loop */
+	adcflag=1;
+  for(;;)
+  {
+		//send tempupper byte register address 11h to read from
+		HAL_I2C_Master_Transmit(&hi2c3, 0xD0, tempupsend, 1, 10);
+		//read data of register 11h to tempUpperByte[1]
+		HAL_I2C_Master_Receive(&hi2c3, 0xD1, tempuprec, 1, 10);
+		tempvalue = tempuprec[0];
+
+		//send tempupper byte register address 11h to read from
+		HAL_I2C_Master_Transmit(&hi2c3, 0xD0, tempdownsend, 1, 10);
+		//read data of register 11h to tempUpperByte[1]
+		/* Shift left by 6 since in the templowerbyte register, we are interested
+		* in the least 2 significant bits as the fractional part
+		* hence shift right by 6
+		*/
+		HAL_I2C_Master_Receive(&hi2c3, 0xD1, tempdownrec, 1, 10);
+		tempfr = (tempdownrec[0] >> 6)*0.25; // 0.25 resolution
+
+		tempfinal = tempvalue + tempfr;
+		sprintf((char *)uartBuf, "Temperature: %f \r\n", tempfinal);
+		
+		
+		//prepare UART output
+		HAL_Delay(1000);
+		HAL_ADC_Start_IT(&hadc1);
+		
+		HAL_Delay(50);
+		
+
+		sprintf(uartBuf3,"<%d %d %d>",(int)moisture_perc,(int)moisture_perc2, (int)tempfinal);
+
+  }
+  /* USER CODE END StartTask02 */
+}
+
+/* USER CODE BEGIN Header_StartTask03 */
+/**
+* @brief Function implementing the UartCommunicati thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask03 */
+void StartTask03(void *argument)
+{
+  /* USER CODE BEGIN StartTask03 */
+  /* Infinite loop */
+  for(;;)
+  {
+		
+			
+
+  
+}
+  /* USER CODE END StartTask03 */
+}
+
+/* USER CODE BEGIN Header_StartTask04 */
+/**
+* @brief Function implementing the Calculate thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask04 */
+void StartTask04(void *argument)
+{
+  /* USER CODE BEGIN StartTask04 */
+  /* Infinite loop */
+
+
+  for(;;)
+  {
+	
+		
+		
+  }
+  /* USER CODE END StartTask04 */
+}
+
+/* USER CODE BEGIN Header_StartTask05 */
+/**
+* @brief Function implementing the Calculate2 thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask05 */
+void StartTask05(void *argument)
+{
+  /* USER CODE BEGIN StartTask05 */
+  /* Infinite loop */
+  for(;;)
+  {
+		
+    osDelay(1);
+  }
+  /* USER CODE END StartTask05 */
+}
+
+/* USER CODE BEGIN Header_StartTask06 */
+/**
+* @brief Function implementing the UartCom2 thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask06 */
+void StartTask06(void *argument)
+{
+  /* USER CODE BEGIN StartTask06 */
+  /* Infinite loop */
+  for(;;)
+  {	
+    osDelay(1);
+  }
+  /* USER CODE END StartTask06 */
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.
