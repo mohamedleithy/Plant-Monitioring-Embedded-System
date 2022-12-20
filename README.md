@@ -12,6 +12,7 @@
 * [Iterations](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#Iterations)
 * [Benefits](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#benefits)
 * [Dashboard](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#dashboard)
+* [Conclusion and Future Work](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#Conclusion-and-Future-Work)
 * [Demo video](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#Demo-video)
 * [Authors](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#authors)
 * [Supervisor](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#supervisor)
@@ -139,6 +140,14 @@ This embedded system would automate the process of watering plants, thus removin
 With the use of the dashboard the user would be able to view the the real-time temperature, humidity and moisture directly through his/her phone/Desktop and get notified through telegram mobile application when any of the parameters approaches its threshold. 
 ## Set Optimal Conditions 
 Given the monitored parameters, the system is able to water the plant and provide it with its optimal ecosystem that are predefined for a certain plant species to allow maximizing the plants’ growth and yield.
+
+# Conlusion and Future Work
+
+##Future Work
+
+* Adding additional sensors: The system could be enhanced with additional sensors to monitor other factors that may impact plant growth and health, such as light levels or nutrient levels in the soil.
+* Expanding the watering capabilities: The system could be designed to support larger water bottles or to incorporate additional watering methods, such as a drip irrigation system or a spray system. This could allow the system to water plants more efficiently and effectively, particularly for larger grow areas or for plants with different watering needs.
+* Improving the water bottle filling process: The system could be enhanced to make the process of filling the water bottles more efficient and convenient, potentially through the use of a water pump or other automation techniques.
 # Dashboard
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/dashboard.png" alt="Dashboard Image" width="600"/>
