@@ -143,11 +143,15 @@ Given the monitored parameters, the system is able to water the plant and provid
 
 # Conlusion and Future Work
 
-##Future Work
+## Conclusion
 
+it can be concluded that the system implemented successfully reads the soil moisture of plants and waters the plants accordingly. This system can be an effective solution for maintaining optimal soil moisture levels for plants, which is important for their health and growth. It can potentially save time and effort for gardeners and farmers by automating the watering process, and it may also help to conserve water by avoiding over-watering or under-watering. Overall, the implementation of this system appears to be a useful tool for the care and maintenance of plants.
+
+## Future Work
 * Adding additional sensors: The system could be enhanced with additional sensors to monitor other factors that may impact plant growth and health, such as light levels or nutrient levels in the soil.
 * Expanding the watering capabilities: The system could be designed to support larger water bottles or to incorporate additional watering methods, such as a drip irrigation system or a spray system. This could allow the system to water plants more efficiently and effectively, particularly for larger grow areas or for plants with different watering needs.
 * Improving the water bottle filling process: The system could be enhanced to make the process of filling the water bottles more efficient and convenient, potentially through the use of a water pump or other automation techniques.
+
 # Dashboard
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/dashboard.png" alt="Dashboard Image" width="600"/>
