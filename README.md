@@ -15,6 +15,7 @@
 * [Conclusion and Future Work](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#Conclusion-and-Future-Work)
 * [Demo video](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#Demo-video)
 * [Authors](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#authors)
+* [Limitations](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#limitations)
 * [Supervisor](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#supervisor)
 
 # Introduction
@@ -156,7 +157,7 @@ it can be concluded that the system implemented successfully reads the soil mois
 
 <img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/dashboard.png" alt="Dashboard Image" width="600"/>
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/dashboar2.png" alt="Dashboard Image 2" width="600"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/dashboard2.png" alt="Dashboard Image 2" width="600"/>
 
 # Project Progress and Demo video
 
@@ -165,6 +166,17 @@ The system is now able to monitor the soil moisture level in two average sized p
 [Demo1 video link](https://drive.google.com/file/d/1defMuau6kGnW1_lsAHdz8Dkl8jO6r3im/view?usp=sharing)
 
 
+
+
+# Limitations
+
+* Our system handles no more than 6 pots.
+* Distance limitation because the digital signal received by the ADC will catch a lot of noise
+* The system is very expensive due to the cost of the components compared to the scale
+* The system does not handle failures
+    * Over-watering 
+    * Does not troubleshoot technical issues in sensors
+    * Force quit the system when a technical issue happens
 
 # Authors
 
