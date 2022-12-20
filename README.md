@@ -1,20 +1,17 @@
 # Plant-Monitioring-Embedded-System
 
-
-
 ## Table of contents
 
 * [Introduction ](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#-introduction)
-* [Background and Motivation](https://github.com/mohamedleithy/  Plant-Monitioring-Embedded-System#Background-and-Motivation)
+* [Background and Motivation](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#Background-and-Motivation)
 * [Problem Statement](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#problem-statement)
 * [Solution](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#solution)
 * [Features](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#features)
 * [Scale of the project](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#scale-of-the-project)
-* [Architecture and Components](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#architecture-and-components)
+* [Architecture](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#architecture)
 * [Iterations](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#Iterations)
 * [Benefits](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#benefits)
 * [Dashboard](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#dashboard)
-* [Connections](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#connections)
 * [Demo video](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#Demo-video)
 * [Authors](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#authors)
 * [Supervisor](https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System#supervisor)
@@ -39,18 +36,15 @@ We are addressing two problems:
 
 Designing an embedded system with a negative feedback loop to efficiently monitor and control agricultural sites. The system will monitor the environment by deploying sensors that keep track of the temperature, humidity, and soil moisture level, to regulate the soil water level using an electronically controlled water valve. An online dashboard will be integrated into the system to report updates on the agricultural site.
 
-# Requirmenets and Features
+# Features
 
-* The user will be able to select his/her plant type through the web interface, and the soil moisture level is specified accordingly
-* The system will be able to monitor the temperature and soil moisture level.
+* The system will be able to monitor the temperature, humidity, and soil moisture level.
 * The system will be able to control the water level in the soil.
-* The system will be able to modify the soil moisture level, based on the temprature. 
-* The system will be able to report updates on the environment to the user through the web interface.
+* The system will be able to report updates on the environment to the user.
 
 # Scale of the project
 
-* The system will be able to monitor indoor plants on a small scale, prototype is done on two overage sized plant pots.
-
+* The system will be able to monitor indoor plants on a small scale.
 
 
 # Architecture
@@ -67,12 +61,12 @@ Here we used a multithreaded architecture to allow the blocking of synchronous r
 
 ### Block Diagram
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Block_diagram_updated.jpeg" alt="Block Diagram" width="700"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Block_Diagram.png" alt="Block Diagram" width="700"/>
 
 ### System Components
 
  * NUCLEO LC432K 
- * ESP32 
+ * Raspberry pi pico 
  * Water Valve
  * Humidity Sensor
  * Temperature Sensor (DS3231 RTC)
@@ -80,29 +74,29 @@ Here we used a multithreaded architecture to allow the blocking of synchronous r
 
 
 #### NUCLEO LC432K
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/93f90ed9ca5239e1ea5cceff654c46a319e15414/docs/images/NUCLEO_LC432K.PNG" alt="NUCLEO LC432K" width="300"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/NUCLEO_LC432K.PNG" alt="NUCLEO LC432K" width="300"/>
 
-#### ESP32
+#### Raspberry pi pico
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/afb314276207133cf847639b5021b7976e6eaa1d/docs/images/ESP32.PNG" alt="ESP32" width="300"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/raspberry_pi_pico.png" alt="ESP32" width="300"/>
 
 #### Water Valve
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/afb314276207133cf847639b5021b7976e6eaa1d/docs/images/Water_valve.PNG" alt="Water Valve" width="300"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Water_valve.PNG" alt="Water Valve" width="300"/>
 
 
 #### Relay
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/afb314276207133cf847639b5021b7976e6eaa1d/docs/images/relay.jpg" alt="Relay" width="300"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/relay.jpg" alt="Relay" width="300"/>
 
 #### Temperature Sensor
 
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/348df613407bbbb6691643846078791d8085499f/docs/images/Temperature_Sensor.PNG" alt="Temperature Sensor" width="300"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Temperature_Sensor.PNG" alt="Temperature Sensor" width="300"/>
 
 #### Mositure Sensor
 
-<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/d4f8a01b7df9d3efa0aec967675b00e0a9128026/docs/images/Mositure_Sensor.PNG" alt="Mositure Sensor" width="300"/>
+<img src = "https://github.com/mohamedleithy/Plant-Monitioring-Embedded-System/blob/main/docs/images/Mositure_Sensor.PNG" alt="Mositure Sensor" width="300"/>
 
 ### Connections:
 
